@@ -51,7 +51,7 @@ const createAddReviewTemplate = () => `
 
 const createRestaurantItemTemplate = (restaurant) => `
   <article class="post-item" onclick="window.location.href='/#/detail/${restaurant.id}'">
-    <img src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" alt="${restaurant.name}" class="lazyload post-item__thumbnail" tabindex="0" width="400" height="400">
+    <img data-src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" alt="${restaurant.name}" class="lazyload post-item__thumbnail" tabindex="0" width="400" height="400">
       <div class="post-item__content">
         <h3 class="post-item__title" tabindex="0">
           <a href="/#/detail/${restaurant.id}">${restaurant.name}</a>
@@ -66,7 +66,7 @@ const createRestaurantItemTemplate = (restaurant) => `
   `;
 
 const createRestaurantDetailTemplate = (restaurant) => `
-  <img class="lazyload content-detail__image" src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" alt="${restaurant.name}">
+  <img class="lazyload content-detail__image" data-src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" alt="${restaurant.name}">
   <div class="content-detail__info">
     <h2 class="content-detail__title">${restaurant.name}</h2>
     <div class="content-detail__category">

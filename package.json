@@ -9,7 +9,8 @@
     "test": "karma start",
     "serve": "http-server dist --port 9000",
     "e2e": "codeceptjs run --steps",
-    "build-image": "node sharp.js"
+    "build-image": "node sharp.js",
+    "build-all": "npm run build & npm run build-image"
   },
   "keywords": [],
   "author": "hadi_cahyadi <r009x0063@dicoding.org>",
