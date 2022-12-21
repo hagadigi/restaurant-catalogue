@@ -8,13 +8,16 @@ Before(({ I }) => {
 
 Scenario('Liking one restaurant', async ({ I }) => {
   I.amOnPage('/');
+  I.waitForElement('.post-item__title a', 30);
   I.seeElement('.post-item__title a');
 
   const firstRestaurant = locate('.post-item__title a').first();
   const firstRestaurantTitle = await I.grabTextFrom(firstRestaurant);
   I.click(firstRestaurant);
 
+  I.waitForElement('#likeButton', 30);
   I.seeElement('#likeButton');
+  I.waitForClickable('#likeButton', 5);
   I.click('#likeButton');
 
   I.amOnPage('/#/favorite');
@@ -25,24 +28,27 @@ Scenario('Liking one restaurant', async ({ I }) => {
 
 Scenario('Unliking one restaurant', async ({ I }) => {
   I.amOnPage('/');
+  I.waitForElement('.post-item__title a', 30);
   I.seeElement('.post-item__title a');
 
   const firstRestaurant = locate('.post-item__title a').first();
   const firstRestaurantTitle = await I.grabTextFrom(firstRestaurant);
-
   I.click(firstRestaurant);
+
+  I.waitForElement('#likeButton', 30);
   I.seeElement('#likeButton');
-
+  I.waitForClickable('#likeButton', 5);
   I.click('#likeButton');
-  I.amOnPage('/#/favorite');
 
+  I.amOnPage('/#/favorite');
   I.seeElement('.post-item');
   const likedRestaurantTitle = await I.grabTextFrom('.post-item__title a');
   assert.strictEqual(firstRestaurantTitle, likedRestaurantTitle);
 
   I.click(likedRestaurantTitle);
+  I.waitForElement('#likeButton', 30); // secs
   I.seeElement('#likeButton');
-
+  I.waitForClickable('#likeButton', 5);
   I.click('#likeButton');
   I.amOnPage('/#/favorite');
   I.dontSeeElement('.post-item');
@@ -50,6 +56,7 @@ Scenario('Unliking one restaurant', async ({ I }) => {
 
 Scenario('Consumer Review in detail page', async ({ I }) => {
   I.amOnPage('/');
+  I.waitForElement('.post-item__title a', 30); // secs
   I.seeElement('.post-item__title a');
 
   const firstRestaurant = await I.grabTextFrom(locate('.post-item__title a').first());
